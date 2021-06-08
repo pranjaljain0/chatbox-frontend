@@ -1,199 +1,228 @@
-@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap');
 
 *,
 body,
 html {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Lexend", sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Lexend', sans-serif;
+}
+
+input[type='text'],
+input[type='button'] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-o-appearance: none;
+}
+
+@media screen and (max-width: 992px) {
+	.container {
+		& .userNameContainer {
+		}
+		& .messegeContainer {
+			margin: 0 10px;
+
+			& .messegesContainer {
+				flex: 1;
+			}
+		}
+	}
 }
 
 .container {
-  height: 100vh;
-  width: 100vw;
-  background-color: #000;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+	height: 100vh;
+	width: 100vw;
+	background-color: #000;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	overflow: hidden;
 
-  & .userNameContainer {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
+	& .userNameContainer {
+		margin-top: 20px;
+		display: flex;
+		flex-direction: column;
 
-    & .usernameInput {
-      width: 100%;
-      outline: none;
-      background-color: #000;
-      color: #fff;
-      margin-top: 30px;
-      padding: 1em 2em;
-      border: 2px solid rgba($color: #fff, $alpha: 0.3);
-      border-radius: 4px;
-      margin: 10px 0;
-      transition: all 0.2s ease;
+		& .usernameInput {
+			width: 100%;
+			outline: none;
+			background-color: #000;
+			color: #fff;
+			margin-top: 30px;
+			padding: 1em 2em;
+			border: 2px solid rgba($color: #fff, $alpha: 0.3);
+			border-radius: 4px;
+			margin: 10px 0;
+			transition: all 0.2s ease;
 
-      &:focus {
-        border: 2px solid rgba($color: #fff, $alpha: 1);
-      }
-    }
+			&:focus {
+				border: 2px solid rgba($color: #fff, $alpha: 1);
+			}
+		}
 
-    & .usernameButton {
-      width: 100%;
-      text-decoration: none;
-      background-color: #000;
-      color: #fff;
-      padding: 1em 2em;
-      border: 2px solid #fff;
-      border-radius: 4px;
-      transition: all 0.2s ease;
-      cursor: pointer;
+		& .usernameButton {
+			width: 100%;
+			text-decoration: none;
+			background-color: #000;
+			color: #fff;
+			padding: 1em 2em;
+			border: 2px solid #fff;
+			border-radius: 4px;
+			transition: all 0.2s ease;
+			cursor: pointer;
 
-      &.disabled {
-        border: 2px solid rgba($color: #fff, $alpha: 0.4);
-        cursor: not-allowed;
-        background-color: rgba($color: #fff, $alpha: 0.4);
+			&.disabled {
+				border: 2px solid rgba($color: #fff, $alpha: 0.4);
+				cursor: not-allowed;
+				background-color: rgba($color: #fff, $alpha: 0.4);
 
-        &:hover {
-          background-color: rgba($color: #fff, $alpha: 0.4);
-          color: rgba($color: #fff, $alpha: 0.4);
-        }
-      }
+				&:hover {
+					background-color: rgba($color: #fff, $alpha: 0.4);
+					color: rgba($color: #fff, $alpha: 0.4);
+				}
+			}
 
-      &:hover {
-        background-color: #fff;
-        color: #000;
-      }
-    }
-  }
+			&:hover {
+				background-color: #fff;
+				color: #000;
+			}
+		}
+	}
 
-  & .connStatus {
-    background-color: #fff;
-    color: black;
-    border-radius: 50px 50px;
-    padding: 8px 12px;
-    margin: 10px 0;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	& .connStatus {
+		background-color: #fff;
+		color: black;
+		border-radius: 50px 50px;
+		padding: 8px 12px;
+		margin: 10px 0;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
-    &::before {
-      content: "";
-      height: 14px;
-      width: 14px;
-      background-color: green;
-      border-radius: 50%;
-      display: block;
-      margin-right: 10px;
-    }
+		&::before {
+			content: '';
+			height: 14px;
+			width: 14px;
+			background-color: green;
+			border-radius: 50%;
+			display: block;
+			margin-right: 10px;
+		}
 
-    &.err {
-      &::before {
-        content: "";
-        height: 14px;
-        width: 14px;
-        background-color: red;
-        border-radius: 50%;
-        display: block;
-        margin-right: 10px;
-      }
-    }
-  }
+		&.err {
+			&::before {
+				content: '';
+				height: 14px;
+				width: 14px;
+				background-color: red;
+				border-radius: 50%;
+				display: block;
+				margin-right: 10px;
+			}
+		}
+	}
 
-  & .messegeContainer {
-    margin-top: 20px;
+	& .messegeContainer {
+		display: flex;
+		flex-direction: column;
+		margin-top: 20px;
 
-    & .messegesContainer {
-      background-color: rgba($color: #fff, $alpha: 0.1);
-      padding: 20px;
-      border-radius: 8px;
-      height: 400px;
-      overflow: scroll;
+		& .messegesContainer {
+			background-color: rgba($color: #fff, $alpha: 0.1);
+			padding: 20px;
+			border-radius: 8px;
+			height: 100%;
+			flex: 1;
+			overflow: scroll;
 
-      & .msg {
-        margin: 8px 0;
-        padding: 10px;
-        border-radius: 8px;
-        position: relative;
-        min-height: 60px;
+			& .msg {
+				margin: 8px 0;
+				padding: 10px;
+				border-radius: 8px;
+				position: relative;
+				min-height: 60px;
 
-        & span {
-          font-size: 0.8em;
+				& p {
+					max-width: 80%;
+				}
 
-          &:first-child {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-          }
+				& span {
+					font-size: 0.8em;
 
-          &:last-child {
-            position: absolute;
-            right: 10px;
-            bottom: 10px;
-          }
-        }
-      }
+					&:first-child {
+						position: absolute;
+						right: 10px;
+						top: 10px;
+					}
 
-      & .send {
-        background-color: #000;
-        margin-left: 20px;
-      }
+					&:last-child {
+						position: absolute;
+						right: 10px;
+						bottom: 10px;
+					}
+				}
+			}
 
-      & .recv {
-        margin-right: 20px;
-        background-color: #fff;
-        color: #000;
-      }
-    }
-    & .messageInputContainer {
-      margin-top: 20px;
+			& .send {
+				background-color: #000;
+				margin-left: 20px;
+			}
 
-      & .inputText {
-        outline: none;
-        background-color: #000;
-        color: #fff;
-        margin-top: 30px;
-        padding: 1em 2em;
-        border: 2px solid rgba($color: #fff, $alpha: 0.3);
-        border-radius: 4px;
-        margin: 0 10px;
-        transition: all 0.2s ease;
+			& .recv {
+				margin-right: 20px;
+				background-color: #fff;
+				color: #000;
+			}
+		}
+		& .messageInputContainer {
+			flex: auto;
+			margin-top: 20px;
 
-        &:focus {
-          border: 2px solid rgba($color: #fff, $alpha: 1);
-        }
-      }
+			& .inputText {
+				outline: none;
+				background-color: #000;
+				color: #fff;
+				margin-top: 30px;
+				padding: 1em 2em;
+				border: 2px solid rgba($color: #fff, $alpha: 0.3);
+				border-radius: 4px;
+				margin: 0 10px;
+				transition: all 0.2s ease;
 
-      & .inputButton {
-        background-color: #000;
-        color: #fff;
-        padding: 1em 2em;
-        border: 2px solid #fff;
-        border-radius: 4px;
-        transition: all 0.2s ease;
-        cursor: pointer;
-        margin: 0 10px;
+				&:focus {
+					border: 2px solid rgba($color: #fff, $alpha: 1);
+				}
+			}
 
-        &.disabled {
-          border: 2px solid rgba($color: #fff, $alpha: 0.4);
-          cursor: not-allowed;
-          background-color: rgba($color: #fff, $alpha: 0.4);
+			& .inputButton {
+				background-color: #000;
+				color: #fff;
+				padding: 1em 2em;
+				border: 2px solid #fff;
+				border-radius: 4px;
+				transition: all 0.2s ease;
+				cursor: pointer;
+				margin: 0 10px;
 
-          &:hover {
-            background-color: rgba($color: #fff, $alpha: 0.4);
-            color: rgba($color: #fff, $alpha: 0.4);
-          }
-        }
+				&.disabled {
+					border: 2px solid rgba($color: #fff, $alpha: 0.4);
+					cursor: not-allowed;
+					background-color: rgba($color: #fff, $alpha: 0.4);
 
-        &:hover {
-          background-color: #fff;
-          color: #000;
-        }
-      }
-    }
-  }
+					&:hover {
+						background-color: rgba($color: #fff, $alpha: 0.4);
+						color: rgba($color: #fff, $alpha: 0.4);
+					}
+				}
+
+				&:hover {
+					background-color: #fff;
+					color: #000;
+				}
+			}
+		}
+	}
 }
