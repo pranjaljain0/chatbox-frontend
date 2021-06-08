@@ -129,6 +129,7 @@ input[type='button'] {
 		display: flex;
 		flex-direction: column;
 		margin-top: 20px;
+		flex: 1;
 
 		& .messegesContainer {
 			background-color: rgba($color: #fff, $alpha: 0.1);
@@ -178,8 +179,7 @@ input[type='button'] {
 			}
 		}
 		& .messageInputContainer {
-			flex: auto;
-			margin-top: 20px;
+			margin: 20px 0;
 
 			& .inputText {
 				outline: none;

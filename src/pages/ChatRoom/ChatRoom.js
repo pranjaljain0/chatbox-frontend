@@ -13,13 +13,6 @@ function ChatRoom({ client, userConnected, initData }) {
     const [inputMsg, setInputMsg] = useState("")
 
     const messagesEndRef = useRef(null)
-    // const scrollToBottom = () => {
-    //     messagesEndRef.current?.scrollIntoView({
-    //         behavior: "smooth",
-    //         block: 'end',
-    //         inline: 'nearest'
-    //     });
-    // }
 
     useEffect(() => {
         client.onmessage = (message) => {
