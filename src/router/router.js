@@ -11,8 +11,8 @@ import Home from "../pages/Home/Home";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { sendMessage } from "../config/helper";
 
-// var client = new W3CWebSocket('WSS://chatbox-backend-app.herokuapp.com');
-var client = new W3CWebSocket('WS://localhost:8000');
+var client = new W3CWebSocket('WSS://chatbox-backend-app.herokuapp.com');
+// var client = new W3CWebSocket('WS://localhost:8000');
 
 export default function Routes() {
     const [username, setUsername] = useState("")
