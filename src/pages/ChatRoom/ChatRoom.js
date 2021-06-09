@@ -1,3 +1,4 @@
+import { CREATE_ROOM_ERROR, CREATE_ROOM_REQUEST, CREATE_ROOM_SUCCESS, INIT, JOIN_ROOM_ERROR, JOIN_ROOM_REQUEST, JOIN_ROOM_SUCCESS, SEND_MESSAGE_REQUEST, UPDATE_CHAT_LOG, USERNAME } from "../../config/constants"
 import { useEffect, useRef, useState } from 'react'
 
 import React from 'react'
@@ -6,36 +7,26 @@ import {
     useParams
 } from "react-router-dom";
 
-function ChatRoom({ client, userConnected, initData }) {
+function ChatRoom({ client, userConnected, msgList }) {
     let { id } = useParams();
-
-    const [msgList, setMsgList] = useState(initData)
     const [inputMsg, setInputMsg] = useState("")
 
     const messagesEndRef = useRef(null)
 
     useEffect(() => {
-        client.onmessage = (message) => {
-            var data = JSON.parse(message.data)
-            setMsgList(data.userMessages)
-            if (messagesEndRef.current) {
-                messagesEndRef.current.scrollIntoView(
-                    {
-                        behavior: 'smooth',
-                        block: 'end',
-                        inline: 'nearest'
-                    })
-            }
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView(
+                {
+                    behavior: 'smooth',
+                    block: 'end',
+                    inline: 'nearest'
+                })
         }
-        return () => {
-            client.close = (e) => { console.warn("Conn closed") }
-            // ...
-        }
-    }, [client])
+    }, [])
 
-    const sendMessage = () => {
+    const sendMessage = (type) => {
         client.send(JSON.stringify({
-            type: "com",
+            type: type,
             username: id,
             content: inputMsg,
         }));
@@ -96,7 +87,7 @@ function ChatRoom({ client, userConnected, initData }) {
                         type="button"
                         value="Submit"
                         className={inputMsg === "" ? "inputButton disabled" : "inputButton"}
-                        onClick={() => inputMsg !== "" && sendMessage()} />
+                        onClick={() => inputMsg !== "" && sendMessage(SEND_MESSAGE_REQUEST)} />
                 </div>
             </div>
 

@@ -24,7 +24,7 @@ input[type='button'] {
 			margin: 0 10px;
 
 			& .messegesContainer {
-				flex: 1;
+				width: 100% !important;
 			}
 		}
 	}
@@ -128,15 +128,16 @@ input[type='button'] {
 	& .messegeContainer {
 		display: flex;
 		flex-direction: column;
-		margin-top: 20px;
+		margin-top: 10px;
 		flex: 1;
+		height: 100%;
 
 		& .messegesContainer {
 			background-color: rgba($color: #fff, $alpha: 0.1);
 			padding: 20px;
 			border-radius: 8px;
-			height: 100%;
-			flex: 1;
+			height: 80%;
+			width: 400px;
 			overflow: scroll;
 
 			& .msg {
@@ -178,8 +179,9 @@ input[type='button'] {
 				color: #000;
 			}
 		}
+
 		& .messageInputContainer {
-			margin: 20px 0;
+			margin: 4px 0;
 
 			& .inputText {
 				outline: none;
