@@ -1,4 +1,4 @@
-import { CREATE_ROOM_ERROR, CREATE_ROOM_REQUEST, CREATE_ROOM_SUCCESS, INIT, JOIN_ROOM_ERROR, JOIN_ROOM_REQUEST, JOIN_ROOM_SUCCESS, SEND_MESSAGE_REQUEST, UPDATE_CHAT_LOG, USERNAME } from "../config/constants"
+import { CREATE_ROOM, INIT, JOIN_ROOM, SEND_MESSAGE, UPDATE_CHAT_LOG, USERNAME } from "../config/constants"
 import React, { useEffect, useState } from "react";
 import {
     Route,
@@ -9,15 +9,16 @@ import {
 import ChatRoom from "../pages/ChatRoom/ChatRoom";
 import Home from "../pages/Home/Home";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
+import { sendMessage } from "../config/helper";
 
-var client = new W3CWebSocket('WSS://chatbox-backend-app.herokuapp.com');
-// var client = new W3CWebSocket('WS://localhost:8000');
+// var client = new W3CWebSocket('WSS://chatbox-backend-app.herokuapp.com');
+var client = new W3CWebSocket('WS://localhost:8000');
 
 export default function Routes() {
-    const [initData, setInitData] = useState(null)
     const [username, setUsername] = useState("")
     const [userConnected, setUserConnected] = useState(false)
-    const [msgList, setMsgList] = useState(initData)
+    const [roomID, setRoomID] = useState(null)
+    const [msgList, setMsgList] = useState(null)
 
     useEffect(() => {
         client.onopen = () => client.send(payload({
@@ -31,14 +32,20 @@ export default function Routes() {
     }
 
     const parseMessage = (obj) => {
-        // let activityArr = [USERNAME, SEND_MESSAGE_REQUEST, UPDATE_CHAT_LOG, CREATE_ROOM_REQUEST, CREATE_ROOM_SUCCESS, CREATE_ROOM_ERROR, JOIN_ROOM_REQUEST, JOIN_ROOM_SUCCESS, JOIN_ROOM_ERROR, INIT]
         switch (obj.type) {
             case INIT:
                 setUserConnected(true)
                 setMsgList(obj.messageList)
                 break
-            case SEND_MESSAGE_REQUEST:
-                setMsgList(obj.messageList)
+            case CREATE_ROOM:
+                setRoomID(obj.payload.roomID)
+                window.location.href = `/${obj.payload.roomID}/${username}`
+                break
+            case JOIN_ROOM:
+                setMsgList(obj.payload.messageList)
+                break
+            case SEND_MESSAGE:
+                setMsgList(obj.payload.messageList)
                 break
             case USERNAME:
                 break;
@@ -51,11 +58,11 @@ export default function Routes() {
     return (
         <Router>
             <Switch>
-                <Route path="/:id">
-                    <ChatRoom client={client} userConnected={userConnected} msgList={msgList} />
+                <Route path={`/:roomID/:username`}>
+                    <ChatRoom client={client} userConnected={userConnected} msgList={msgList} roomID={roomID} username={username} />
                 </Route>
                 <Route path="/">
-                    <Home setUsername={setUsername} username={username} />
+                    <Home client={client} setUsername={setUsername} username={username} />
                 </Route>
             </Switch>
         </Router>
