@@ -1,4 +1,4 @@
-import { CREATE_ROOM, DROP, INIT, JOIN_ROOM, SEND_MESSAGE, STATUS_UPDATE, UPDATE_CHAT_LOG, USERNAME } from "../config/constants"
+import { CREATE_ROOM, DROP, ENTER_ROOM, INIT, JOIN_ROOM, SEND_MESSAGE, STATUS_UPDATE, UPDATE_CHAT_LOG, USERNAME } from "../config/constants"
 import React, { useEffect, useState } from "react";
 import {
     Route,
@@ -43,6 +43,11 @@ export default function Routes() {
                 break
             case CREATE_ROOM:
                 setRoomID(obj.payload.roomID)
+                window.location.href = `/${obj.payload.roomID}/${obj.payload.username}`
+                break
+            case ENTER_ROOM:
+                setRoomID(obj.payload.roomID)
+                setMsgList(obj.payload.messageList)
                 window.location.href = `/${obj.payload.roomID}/${obj.payload.username}`
                 break
             case JOIN_ROOM:

@@ -1,4 +1,4 @@
-import { CREATE_ROOM, JOIN_ROOM } from "../../config/constants"
+import { CREATE_ROOM, ENTER_ROOM, JOIN_ROOM } from "../../config/constants"
 
 import { Button } from "../../stories/Button/Button"
 import { Header } from "../../stories/Header/Header"
@@ -27,7 +27,8 @@ function Home({ client, }) {
                     }} /></>}
                 <InputText placeholder="Enter a Room ID" value={roomInput} setValue={(e) => setRoomInput(e.target.value)} />
                 <Button label={"Enter the Room"}
-                    onClick={() => roomInput !== "" && username !== "" && sendMessage(client, JOIN_ROOM, { roomID: roomID, username: username })}
+                    onClick={() => roomInput !== "" && username !== "" && sendMessage(client, ENTER_ROOM, { roomID: roomInput, username: username })
+                    }
                     disabled={(roomInput.length > 0 && username.length > 0) ? false : true} />
             </div>
         </div>
