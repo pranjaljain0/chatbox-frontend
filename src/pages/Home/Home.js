@@ -11,7 +11,7 @@ function Home({ client, }) {
     let { roomID } = useParams();
 
     const [username, setUsername] = useState("")
-    const [roomInput, setRoomInput] = useState("")
+    const [roomInput, setRoomInput] = useState(roomID || "")
 
     return (
         <div className="container center">
