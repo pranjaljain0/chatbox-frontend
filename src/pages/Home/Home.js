@@ -1,10 +1,10 @@
 import { CREATE_ROOM, JOIN_ROOM } from "../../config/constants"
-import { Link, useParams } from "react-router-dom"
 
 import { Button } from "../../stories/Button/Button"
 import { Header } from "../../stories/Header/Header"
 import InputText from "../../stories/Input/InputText"
 import { sendMessage } from "../../config/helper"
+import { useParams } from "react-router-dom"
 import { useState } from "react"
 
 function Home({ client, }) {

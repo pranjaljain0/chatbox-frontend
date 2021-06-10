@@ -1,4 +1,4 @@
-import { CREATE_ROOM, INIT, JOIN_ROOM, SEND_MESSAGE, UPDATE_CHAT_LOG, USERNAME } from "../../config/constants"
+import { CREATE_ROOM, DROP, INIT, JOIN_ROOM, SEND_MESSAGE, UPDATE_CHAT_LOG, USERNAME } from "../../config/constants"
 import { sendMessage, timeSince, waitForConnection } from "../../config/helper";
 import { useEffect, useRef, useState } from 'react'
 
@@ -10,7 +10,7 @@ import {
     useParams
 } from "react-router-dom";
 
-function ChatRoom({ client, userConnected, msgList }) {
+function ChatRoom({ client, userConnected, msgList, }) {
     let { roomID, username } = useParams();
     const [inputMsg, setInputMsg] = useState("")
     const messagesEndRef = useRef(null)
@@ -33,7 +33,7 @@ function ChatRoom({ client, userConnected, msgList }) {
     return (
         <div className="container">
             <ConnectionStatus connection={userConnected} />
-            <Header username={username} roomID={roomID} onLogout={() => console.log("Logout")} onCopy={() => console.log("Copy")} />
+            <Header username={username} roomID={roomID} onLogout={() => sendMessage(client, DROP, { roomID, username })} onCopy={() => navigator.clipboard.writeText(`https://chatbox.pranjaljain.me/${roomID}`)} />
             <div className="messegeContainer">
                 <div className="messegesContainer">
                     {(msgList !== undefined && msgList !== null) &&
@@ -51,12 +51,15 @@ function ChatRoom({ client, userConnected, msgList }) {
                         disabled={inputMsg === ""}
                         value={inputMsg}
                         setValue={(e) => setInputMsg(e.target.value)}
-                        onSubmit={() => inputMsg !== "" && sendMessage(client, SEND_MESSAGE, {
-                            type: SEND_MESSAGE,
-                            username: username,
-                            roomID: roomID,
-                            content: inputMsg,
-                        })} />
+                        onSubmit={() => {
+                            inputMsg !== "" && sendMessage(client, SEND_MESSAGE, {
+                                type: SEND_MESSAGE,
+                                username: username,
+                                roomID: roomID,
+                                content: inputMsg,
+                            })
+                            setInputMsg("")
+                        }} />
                 </div>
             </div>
 

@@ -1,24 +1,27 @@
-import { CREATE_ROOM, INIT, JOIN_ROOM, SEND_MESSAGE, UPDATE_CHAT_LOG, USERNAME } from "../config/constants"
+import { CREATE_ROOM, DROP, INIT, JOIN_ROOM, SEND_MESSAGE, STATUS_UPDATE, UPDATE_CHAT_LOG, USERNAME } from "../config/constants"
 import React, { useEffect, useState } from "react";
 import {
     Route,
     BrowserRouter as Router,
-    Switch
+    Switch,
+    useParams
 } from "react-router-dom";
 
 import ChatRoom from "../pages/ChatRoom/ChatRoom";
 import Home from "../pages/Home/Home";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-import { sendMessage } from "../config/helper";
 
-// var client = process.env.SOCKET_URL
-var client = new W3CWebSocket('WSS://chatbox-backend-app.herokuapp.com');
-// var client = new W3CWebSocket('WS://localhost:8000');
+// var client = new W3CWebSocket('WSS://chatbox-backend-app.herokuapp.com');
+var client = new W3CWebSocket('WS://localhost:8000');
 
 export default function Routes() {
     const [userConnected, setUserConnected] = useState(false)
     const [roomID, setRoomID] = useState(null)
     const [msgList, setMsgList] = useState(null)
+    const [alert, setAlert] = useState(null)
+    // let { username } = useParams();
+
+    // console.log(username)
 
     useEffect(() => {
         client.onopen = () => client.send(payload({
@@ -32,7 +35,7 @@ export default function Routes() {
     }
 
     const parseMessage = (obj) => {
-        console.log(obj)
+
         switch (obj.type) {
             case INIT:
                 setUserConnected(true)
@@ -50,6 +53,13 @@ export default function Routes() {
                 setMsgList(obj.payload.messageList)
                 break
             case USERNAME:
+                break;
+            case STATUS_UPDATE:
+                setAlert(obj.payload.status_update)
+                break;
+            case DROP:
+                setMsgList(obj.payload.messageList)
+                // if (obj.payload.username === ) window.location.href = `/`
                 break;
 
             default:
