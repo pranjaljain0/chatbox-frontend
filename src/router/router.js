@@ -11,8 +11,9 @@ import Home from "../pages/Home/Home";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { sendMessage } from "../config/helper";
 
-// var client = new W3CWebSocket('WSS://chatbox-backend-app.herokuapp.com');
-var client = new W3CWebSocket('WS://localhost:8000');
+// var client = process.env.SOCKET_URL
+var client = new W3CWebSocket('WSS://chatbox-backend-app.herokuapp.com');
+// var client = new W3CWebSocket('WS://localhost:8000');
 
 export default function Routes() {
     const [username, setUsername] = useState("")
@@ -40,7 +41,6 @@ export default function Routes() {
                 break
             case CREATE_ROOM:
                 setRoomID(obj.payload.roomID)
-                setUsername(obj.payload.username)
                 window.location.href = `/${obj.payload.roomID}/${obj.payload.username}`
                 break
             case JOIN_ROOM:
