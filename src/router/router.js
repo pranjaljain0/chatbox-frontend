@@ -1,14 +1,13 @@
-import { CREATE_ROOM, DROP, ENTER_ROOM, INIT, JOIN_ROOM, SEND_MESSAGE, STATUS_UPDATE, UPDATE_CHAT_LOG, USERNAME } from "../config/constants"
+import { CREATE_ROOM, DROP, ENTER_ROOM, INIT, JOIN_ROOM, SEND_MESSAGE, STATUS_UPDATE, USERNAME } from "config/constants"
 import React, { useEffect, useState } from "react";
 import {
     Route,
     BrowserRouter as Router,
     Switch,
-    useParams
 } from "react-router-dom";
 
-import ChatRoom from "../pages/ChatRoom/ChatRoom";
-import Home from "../pages/Home/Home";
+import ChatRoom from "pages/ChatRoom/ChatRoom";
+import Home from "pages/Home/Home";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 var client = new W3CWebSocket('WSS://chatbox-backend-app.herokuapp.com');
@@ -78,10 +77,10 @@ export default function Routes() {
                     <ChatRoom client={client} userConnected={userConnected} msgList={msgList} roomID={roomID} />
                 </Route>
                 <Route path={`/:roomID`}>
-                    <Home client={client} />
+                    <Home client={client} alert={alert} />
                 </Route>
                 <Route path="/">
-                    <Home client={client} />
+                    <Home client={client} alert={alert} />
                 </Route>
             </Switch>
         </Router>

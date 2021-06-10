@@ -1,5 +1,6 @@
 import "./InputText.scss"
 
+import PropTypes from "prop-types"
 import React from 'react'
 
 export default function InputText({ placeholder, value, setValue }) {
@@ -8,3 +9,8 @@ export default function InputText({ placeholder, value, setValue }) {
     )
 }
 
+InputText.propTypes = {
+    placeholder: PropTypes.string,
+    value: PropTypes.string,
+    setValue: PropTypes.func
+}

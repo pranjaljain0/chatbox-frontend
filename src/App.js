@@ -1,12 +1,8 @@
 import './styles/global.scss';
 
+import React from "react"
 import Routes from './router/router';
 
-function App() {
-
-  return (
-    <Routes />
-  );
-}
+const App = () => <Routes />
 
 export default App;

@@ -1,10 +1,11 @@
-import { CREATE_ROOM, DROP, INIT, JOIN_ROOM, SEND_MESSAGE, UPDATE_CHAT_LOG, USERNAME } from "../../config/constants"
-import { sendMessage, timeSince, waitForConnection } from "../../config/helper";
+import { DROP, JOIN_ROOM, SEND_MESSAGE, } from "config/constants"
+import { sendMessage, timeSince, waitForConnection } from "config/helper";
 import { useEffect, useRef, useState } from 'react'
 
-import ConnectionStatus from "../../stories/connetionStatus/ConnectionStatus";
-import { Header } from "../../stories/Header/Header"
-import NewMessage from "../../stories/Form/NewMessage/NewMessage"
+import ConnectionStatus from "stories/connetionStatus/ConnectionStatus";
+import { Header } from "stories/Header/Header"
+import NewMessage from "stories/Form/NewMessage/NewMessage"
+import PropTypes from 'prop-types';
 import React from 'react'
 import {
     useParams
@@ -68,6 +69,12 @@ function ChatRoom({ client, userConnected, msgList, }) {
 
         </div>
     )
+}
+
+ChatRoom.propTypes = {
+    client: PropTypes.any,
+    userConnected: PropTypes.bool,
+    msgList: PropTypes.object
 }
 
 export default ChatRoom

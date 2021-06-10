@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"paths": {
+			"@stories/*": ["./stories/*"]
+		}
+	},
+	"exclude": ["./node_modules"]
+}

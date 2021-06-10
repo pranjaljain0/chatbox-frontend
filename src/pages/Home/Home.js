@@ -1,13 +1,15 @@
-import { CREATE_ROOM, ENTER_ROOM, JOIN_ROOM } from "../../config/constants"
+import { CREATE_ROOM, ENTER_ROOM } from "config/constants"
 
-import { Button } from "../../stories/Button/Button"
-import { Header } from "../../stories/Header/Header"
-import InputText from "../../stories/Input/InputText"
-import { sendMessage } from "../../config/helper"
+import { Button } from "stories/Button/Button"
+import { Header } from "stories/Header/Header"
+import InputText from "stories/Input/InputText"
+import PropType from "prop-types"
+import React from "react"
+import { sendMessage } from "config/helper"
 import { useParams } from "react-router-dom"
 import { useState } from "react"
 
-function Home({ client, }) {
+function Home({ client }) {
     let { roomID } = useParams();
 
     const [username, setUsername] = useState("")
@@ -33,6 +35,10 @@ function Home({ client, }) {
             </div>
         </div>
     )
+}
+
+Home.propTypes = {
+    client: PropType.any
 }
 
 export default Home
