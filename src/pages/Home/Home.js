@@ -10,7 +10,7 @@ function Home({ client, username, setUsername }) {
                 <span className={username === "" ? "usernameButton disabled" : "usernameButton"}
                     role='button'
                     aria-hidden
-                    onClick={() => username !== "" && sendMessage(client, CREATE_ROOM, null)}>
+                    onClick={() => username !== "" && sendMessage(client, CREATE_ROOM, { username: username })}>
                     Create a Room</span>
                 <input type="text" placeholder="Enter a username" className="usernameInput" value={username} onChange={(e) => setUsername(e.target.value)} />
                 <span className={username === "" ? "usernameButton disabled" : "usernameButton"}>
