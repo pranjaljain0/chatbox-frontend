@@ -1,20 +1,34 @@
-import { CREATE_ROOM } from "../../config/constants"
-import { Link } from "react-router-dom"
-import { sendMessage } from "../../config/helper"
+import { CREATE_ROOM, JOIN_ROOM } from "../../config/constants"
+import { Link, useParams } from "react-router-dom"
 
-function Home({ client, username, setUsername }) {
+import { Button } from "../../stories/Button/Button"
+import { Header } from "../../stories/Header/Header"
+import InputText from "../../stories/Input/InputText"
+import { sendMessage } from "../../config/helper"
+import { useState } from "react"
+
+function Home({ client, }) {
+    let { roomID } = useParams();
+
+    const [username, setUsername] = useState("")
+    const [roomInput, setRoomInput] = useState("")
+
     return (
         <div className="container center">
-            <h1>ChatBox</h1>
+            <Header roomID={roomID} onLogout={() => console.log("Logout")} onCopy={() => navigator.clipboard.writeText(`https://chatbox.pranjaljain.me/${roomID}`)} />
             <div className="userNameContainer">
-                <span className={username === "" ? "usernameButton disabled" : "usernameButton"}
-                    role='button'
-                    aria-hidden
-                    onClick={() => username !== "" && sendMessage(client, CREATE_ROOM, { username: username })}>
-                    Create a Room</span>
-                <input type="text" placeholder="Enter a username" className="usernameInput" value={username} onChange={(e) => setUsername(e.target.value)} />
-                <span className={username === "" ? "usernameButton disabled" : "usernameButton"}>
-                    Enter the Room</span>
+                <InputText placeholder="Enter a username" value={username} setValue={(e) => setUsername(e.target.value)} />
+                {(roomID === undefined || roomID === null) && <><Button label={"Create a Room"}
+                    onClick={() => username !== "" && sendMessage(client, CREATE_ROOM, { username: username })}
+                    disabled={username === ""} />
+                    <hr style={{
+                        margin: "20px auto",
+                        width: "80%",
+                    }} /></>}
+                <InputText placeholder="Enter a Room ID" value={roomInput} setValue={(e) => setRoomInput(e.target.value)} />
+                <Button label={"Enter the Room"}
+                    onClick={() => roomInput !== "" && username !== "" && sendMessage(client, JOIN_ROOM, { roomID: roomID, username: username })}
+                    disabled={(roomInput.length > 0 && username.length > 0) ? false : true} />
             </div>
         </div>
     )

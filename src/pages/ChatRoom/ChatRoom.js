@@ -2,6 +2,9 @@ import { CREATE_ROOM, INIT, JOIN_ROOM, SEND_MESSAGE, UPDATE_CHAT_LOG, USERNAME }
 import { sendMessage, timeSince, waitForConnection } from "../../config/helper";
 import { useEffect, useRef, useState } from 'react'
 
+import ConnectionStatus from "../../stories/connetionStatus/ConnectionStatus";
+import { Header } from "../../stories/Header/Header"
+import NewMessage from "../../stories/Form/NewMessage/NewMessage"
 import React from 'react'
 import {
     useParams
@@ -29,8 +32,8 @@ function ChatRoom({ client, userConnected, msgList }) {
 
     return (
         <div className="container">
-            {userConnected ? <span className="connStatus">Connected</span> : <span className="connStatus err">Not Connected</span>}
-            <h1>ChatBox</h1>
+            <ConnectionStatus connection={userConnected} />
+            <Header username={username} roomID={roomID} onLogout={() => console.log("Logout")} onCopy={() => console.log("Copy")} />
             <div className="messegeContainer">
                 <div className="messegesContainer">
                     {(msgList !== undefined && msgList !== null) &&
@@ -43,12 +46,12 @@ function ChatRoom({ client, userConnected, msgList }) {
                         })}
                 </div>
                 <div className="messageInputContainer">
-                    <input type="text" placeholder="Enter Message" className="inputText" value={inputMsg} onChange={(e) => setInputMsg(e.target.value)} />
-                    <input
-                        type="button"
-                        value="Submit"
-                        className={inputMsg === "" ? "inputButton disabled" : "inputButton"}
-                        onClick={() => inputMsg !== "" && sendMessage(client, SEND_MESSAGE, {
+                    <NewMessage
+                        placeholder="Enter your message"
+                        disabled={inputMsg === ""}
+                        value={inputMsg}
+                        setValue={(e) => setInputMsg(e.target.value)}
+                        onSubmit={() => inputMsg !== "" && sendMessage(client, SEND_MESSAGE, {
                             type: SEND_MESSAGE,
                             username: username,
                             roomID: roomID,

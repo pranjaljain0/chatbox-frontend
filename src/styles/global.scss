@@ -23,8 +23,6 @@ input[type='button'] {
 
 @media screen and (max-width: 992px) {
 	.container {
-		& .userNameContainer {
-		}
 		& .messegeContainer {
 			margin: 0 10px;
 
@@ -99,46 +97,13 @@ input[type='button'] {
 		}
 	}
 
-	& .connStatus {
-		background-color: #fff;
-		color: black;
-		border-radius: 50px 50px;
-		padding: 8px 12px;
-		margin: 10px 0;
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		&::before {
-			content: '';
-			height: 14px;
-			width: 14px;
-			background-color: green;
-			border-radius: 50%;
-			display: block;
-			margin-right: 10px;
-		}
-
-		&.err {
-			&::before {
-				content: '';
-				height: 14px;
-				width: 14px;
-				background-color: red;
-				border-radius: 50%;
-				display: block;
-				margin-right: 10px;
-			}
-		}
-	}
-
 	& .messegeContainer {
 		display: flex;
 		flex-direction: column;
 		margin-top: 10px;
 		flex: 1;
 		height: 100%;
+		width: 100%;
 
 		& .messegesContainer {
 			background-color: rgba($color: #fff, $alpha: 0.1);
@@ -208,55 +173,6 @@ input[type='button'] {
 				margin-right: 20px;
 				background-color: #fff;
 				color: #000;
-			}
-		}
-
-		& .messageInputContainer {
-			margin: 4px 0;
-
-			& .inputText {
-				outline: none;
-				background-color: #000;
-				color: #fff;
-				margin-top: 30px;
-				padding: 1em 2em;
-				border: 2px solid rgba($color: #fff, $alpha: 0.3);
-				border-radius: 4px;
-				margin: 0;
-				transition: all 0.2s ease;
-
-				&:focus {
-					border: 2px solid rgba($color: #fff, $alpha: 1);
-				}
-			}
-
-			& .inputButton {
-				background-color: #000;
-				color: #fff;
-				padding: 1em 2em;
-				border: 2px solid #fff;
-				border-radius: 4px;
-				transition: all 0.2s ease;
-				cursor: pointer;
-				margin: 0;
-				margin-left: 5px;
-				margin-top: 10px;
-
-				&.disabled {
-					border: 2px solid rgba($color: #fff, $alpha: 0.4);
-					cursor: not-allowed;
-					background-color: rgba($color: #fff, $alpha: 0.4);
-
-					&:hover {
-						background-color: rgba($color: #fff, $alpha: 0.4);
-						color: rgba($color: #fff, $alpha: 0.4);
-					}
-				}
-
-				&:hover {
-					background-color: #fff;
-					color: #000;
-				}
 			}
 		}
 	}
