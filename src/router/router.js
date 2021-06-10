@@ -59,7 +59,6 @@ export default function Routes() {
                 break;
             case DROP:
                 setMsgList(obj.payload.messageList)
-                // if (obj.payload.username === ) window.location.href = `/`
                 break;
 
             default:

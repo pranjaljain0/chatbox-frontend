@@ -33,7 +33,10 @@ function ChatRoom({ client, userConnected, msgList, }) {
     return (
         <div className="container">
             <ConnectionStatus connection={userConnected} />
-            <Header username={username} roomID={roomID} onLogout={() => sendMessage(client, DROP, { roomID, username })} onCopy={() => navigator.clipboard.writeText(`https://chatbox.pranjaljain.me/${roomID}`)} />
+            <Header username={username} roomID={roomID} onLogout={() => {
+                sendMessage(client, DROP, { roomID, username })
+                window.location.href = "/"
+            }} onCopy={() => navigator.clipboard.writeText(`https://chatbox.pranjaljain.me/${roomID}`)} />
             <div className="messegeContainer">
                 <div className="messegesContainer">
                     {(msgList !== undefined && msgList !== null) &&
