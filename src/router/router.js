@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import ChatRoom from "pages/ChatRoom/ChatRoom";
+import Error from "stories/pages/error/Error";
 import Home from "pages/Home/Home";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
@@ -73,6 +74,9 @@ export default function Routes() {
     return (
         <Router>
             <Switch>
+                <Route path="/404">
+                    <Error />
+                </Route>
                 <Route path={`/:roomID/:username`}>
                     <ChatRoom client={client} userConnected={userConnected} msgList={msgList} roomID={roomID} />
                 </Route>
