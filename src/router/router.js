@@ -74,9 +74,6 @@ export default function Routes() {
     return (
         <Router>
             <Switch>
-                <Route path="/404">
-                    <Error />
-                </Route>
                 <Route path={`/:roomID/:username`}>
                     <ChatRoom client={client} userConnected={userConnected} msgList={msgList} roomID={roomID} />
                 </Route>
@@ -85,6 +82,9 @@ export default function Routes() {
                 </Route>
                 <Route path="/">
                     <Home client={client} alert={alert} />
+                </Route>
+                <Route path="*">
+                    <Error />
                 </Route>
             </Switch>
         </Router>
