@@ -17,7 +17,7 @@ function Home({ client }) {
 	const [messageText, setMessageText] = useState('');
 	const [showMessage, setShowMessage] = useState(false);
 
-	const handleJoinRoom = () => {
+	const handleJoinRoom = async () => {
 		if (roomInput !== '' && username !== '')
 			sendMessage(client, ENTER_ROOM, {
 				roomID: roomInput,
@@ -27,7 +27,7 @@ function Home({ client }) {
 			if (roomInput === '') setMessageText('Enter a room ID');
 			if (username === '') setMessageText('Enter your username');
 			setShowMessage(true);
-			setTimeout(() => setShowMessage(false), 4000);
+			setTimeout(() => setShowMessage(false), 5000);
 		}
 	};
 
@@ -58,6 +58,7 @@ function Home({ client }) {
 			{showMessage && (
 				<div className='alertSection'>
 					<p>{messageText}</p>
+					<div className='progress'></div>
 				</div>
 			)}
 			<div className='userNameContainer'>
