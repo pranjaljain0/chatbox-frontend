@@ -1,12 +1,12 @@
-@import '../../../styles/global.scss';
+@import "../../../styles/global.scss";
 
 .newMessage {
-	margin-top: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-	& .inputText {
-		flex: 1;
-	}
+  & .inputText {
+    flex: 1;
+  }
 }

@@ -1,8 +1,8 @@
-import './styles/global.scss';
+import "./styles/global.scss";
 
-import React from "react"
-import Routes from './router/router';
+import React from "react";
+import Routes from "./router/router";
 
-const App = () => <Routes />
+const App = () => <Routes />;
 
 export default App;

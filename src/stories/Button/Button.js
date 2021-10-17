@@ -1,7 +1,7 @@
-import './button.scss';
+import "./button.scss";
 
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from "prop-types";
+import React from "react";
 
 /**
  * Primary UI component for user interaction
@@ -12,14 +12,15 @@ export const Button = ({ label, onClick, disabled }) => {
       type="button"
       value={label}
       className={disabled ? "inputButton disabled" : "inputButton"}
-      onClick={onClick} />
+      onClick={onClick}
+    />
   );
 };
 
 Button.propTypes = {
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {

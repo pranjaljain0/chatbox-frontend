@@ -19,6 +19,7 @@ input[type='button'] {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	-o-appearance: none;
+	margin: 4px 0;
 }
 
 @media screen and (max-width: 992px) {
@@ -44,6 +45,42 @@ input[type='button'] {
 	overflow: hidden;
 	&.center {
 		justify-content: center;
+	}
+
+	& .aboutSection {
+		border: 1px solid #fff;
+		width: 100%;
+		padding: 12px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		margin-top: 20px;
+		border-radius: 6px;
+
+		& p {
+			margin: 4px 0;
+			font-weight: 400;
+		}
+	}
+
+	& .alertSection {
+		border: 1px solid #cb525a;
+		color: #cb525a;
+		width: 100%;
+		padding: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		margin-top: 20px;
+		border-radius: 6px;
+
+		& p {
+			margin: 4px 0;
+			font-size: 0.9em;
+			font-weight: lighter;
+		}
 	}
 
 	& .userNameContainer {
@@ -145,6 +182,7 @@ input[type='button'] {
 
 				& p {
 					max-width: 80%;
+					margin-bottom: 20px;
 				}
 
 				& span {

@@ -1,8 +1,8 @@
-import { Header } from './Header/Header';
-import React from 'react';
+import { Header } from "./Header/Header";
+import React from "react";
 
 export default {
-  title: 'Chatbox/Header',
+  title: "Chatbox/Header",
   component: Header,
 };
 

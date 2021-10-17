@@ -1,17 +1,17 @@
-@import '../../styles/global.scss';
+@import "../../styles/global.scss";
 
 .inputText {
-	outline: none;
-	background-color: #000;
-	color: #fff;
-	margin-top: 30px;
-	padding: 1em 2em;
-	border: 2px solid rgba($color: #fff, $alpha: 0.3);
-	border-radius: 4px;
-	margin: 0;
-	transition: all 0.2s ease;
+  outline: none;
+  background-color: #000;
+  color: #fff;
+  margin-top: 30px;
+  padding: 1em 2em;
+  border: 2px solid rgba($color: #fff, $alpha: 0.3);
+  border-radius: 4px;
+  margin: 0;
+  transition: all 0.2s ease;
 
-	&:focus {
-		border: 2px solid rgba($color: #fff, $alpha: 1);
-	}
+  &:focus {
+    border: 2px solid rgba($color: #fff, $alpha: 1);
+  }
 }
