@@ -16,17 +16,14 @@ import Error from 'stories/pages/error/Error';
 import Home from 'pages/Home/Home';
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
 
-// var client = new W3CWebSocket('WSS://chatbox-backend-app.herokuapp.com');
-var client = new W3CWebSocket('WS://localhost:8000');
+var client = new W3CWebSocket('WSS://chatbox-backend-app.herokuapp.com');
+// var client = new W3CWebSocket('WS://192.168.1.189:8000');
 
 export default function Routes() {
 	const [userConnected, setUserConnected] = useState(false);
 	const [roomID, setRoomID] = useState(null);
 	const [msgList, setMsgList] = useState(null);
 	const [alert, setAlert] = useState(null);
-	// let { username } = useParams();
-
-	// console.log(username)
 
 	useEffect(() => {
 		client.onopen = () =>
@@ -45,8 +42,8 @@ export default function Routes() {
 	const parseMessage = (obj) => {
 		switch (obj.type) {
 			case INIT:
+				// Handle initial case
 				setUserConnected(true);
-				setMsgList(obj.messageList);
 				break;
 			case CREATE_ROOM:
 				setRoomID(obj.payload.roomID);

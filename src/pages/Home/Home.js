@@ -17,7 +17,7 @@ function Home({ client }) {
 	const [messageText, setMessageText] = useState('');
 	const [showMessage, setShowMessage] = useState(false);
 
-	const handleJoinRoom = async () => {
+	const handleJoinRoom = () => {
 		if (roomInput !== '' && username !== '')
 			sendMessage(client, ENTER_ROOM, {
 				roomID: roomInput,
@@ -25,7 +25,17 @@ function Home({ client }) {
 			});
 		else {
 			if (roomInput === '') setMessageText('Enter a room ID');
-			if (username === '') setMessageText('Enter your username');
+			if (username === '') setMessageText('Enter your Username');
+			setShowMessage(true);
+			setTimeout(() => setShowMessage(false), 5000);
+		}
+	};
+
+	const handleCreateRoom = () => {
+		if (username !== '')
+			sendMessage(client, CREATE_ROOM, { username: username });
+		else {
+			if (username === '') setMessageText('Enter a Username');
 			setShowMessage(true);
 			setTimeout(() => setShowMessage(false), 5000);
 		}
@@ -71,10 +81,7 @@ function Home({ client }) {
 					<>
 						<Button
 							label={'Create a Room'}
-							onClick={() =>
-								username !== '' &&
-								sendMessage(client, CREATE_ROOM, { username: username })
-							}
+							onClick={handleCreateRoom}
 							disabled={username === ''}
 						/>
 						<hr
