@@ -1,35 +1,36 @@
-@import "../../styles/global.scss";
+@import '../../styles/global.scss';
 
 span.connStatus {
-  background-color: #fff;
-  color: black;
-  border-radius: 50px 50px;
-  padding: 8px 12px;
-  margin: 10px 0;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	background-color: #fff;
+	color: black;
+	border-radius: 50px 50px;
+	padding: 8px 12px;
+	// margin: 10px 0;
+	margin-bottom: 10px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-  &::before {
-    content: "";
-    height: 14px;
-    width: 14px;
-    background-color: green;
-    border-radius: 50%;
-    display: block;
-    margin-right: 10px;
-  }
+	&::before {
+		content: '';
+		height: 14px;
+		width: 14px;
+		background-color: green;
+		border-radius: 50%;
+		display: block;
+		margin-right: 10px;
+	}
 
-  &.err {
-    &::before {
-      content: "";
-      height: 14px;
-      width: 14px;
-      background-color: red;
-      border-radius: 50%;
-      display: block;
-      margin-right: 10px;
-    }
-  }
+	&.err {
+		&::before {
+			content: '';
+			height: 14px;
+			width: 14px;
+			background-color: red;
+			border-radius: 50%;
+			display: block;
+			margin-right: 10px;
+		}
+	}
 }

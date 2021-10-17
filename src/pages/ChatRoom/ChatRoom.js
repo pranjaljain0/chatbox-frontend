@@ -14,15 +14,17 @@ function ChatRoom({ client, userConnected, msgList }) {
 	const [inputMsg, setInputMsg] = useState('');
 	const messagesEndRef = useRef(null);
 
+	const scrollToBottom = () => {
+		messagesEndRef.current.scrollIntoView({
+			behavior: 'smooth',
+			block: 'end',
+			inline: 'nearest',
+		});
+	};
+
 	useEffect(() => {
-		if (messagesEndRef.current) {
-			messagesEndRef.current.scrollIntoView({
-				behavior: 'smooth',
-				block: 'end',
-				inline: 'nearest',
-			});
-		}
-	}, []);
+		scrollToBottom();
+	}, [msgList]);
 
 	useEffect(() => {
 		waitForConnection(
@@ -51,6 +53,7 @@ function ChatRoom({ client, userConnected, msgList }) {
 			/>
 			<div className='messegeContainer'>
 				<div className='messegesContainer'>
+					<div ref={messagesEndRef}></div>
 					{msgList !== undefined &&
 						msgList !== null &&
 						msgList.map((item, index) => {
