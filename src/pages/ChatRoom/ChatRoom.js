@@ -53,7 +53,6 @@ function ChatRoom({ client, userConnected, msgList }) {
 			/>
 			<div className='messegeContainer'>
 				<div className='messegesContainer'>
-					<div ref={messagesEndRef}></div>
 					{msgList !== undefined &&
 						msgList !== null &&
 						msgList.map((item, index) => {
@@ -76,6 +75,7 @@ function ChatRoom({ client, userConnected, msgList }) {
 								</div>
 							);
 						})}
+					<div ref={messagesEndRef}></div>
 				</div>
 				<div className='messageInputContainer'>
 					<NewMessage

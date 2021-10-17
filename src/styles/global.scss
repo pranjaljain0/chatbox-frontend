@@ -46,6 +46,7 @@ input[type='button'] {
 
 .container {
 	height: 100vh;
+	min-height: -webkit-fill-available;
 	width: 350px;
 	margin: auto;
 	padding: 20px 6px;
