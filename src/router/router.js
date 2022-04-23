@@ -40,6 +40,8 @@ export default function Routes() {
 	};
 
 	const parseMessage = (obj) => {
+		var current = new Date();
+		console.log(current);
 		switch (obj.type) {
 			case INIT:
 				// Handle initial case
@@ -59,6 +61,8 @@ export default function Routes() {
 				setMsgList(obj.payload.messageList);
 				break;
 			case SEND_MESSAGE:
+				current = new Date();
+				console.log(current);
 				setMsgList(obj.payload.messageList);
 				break;
 			case USERNAME:
