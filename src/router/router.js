@@ -32,7 +32,10 @@ export default function Routes() {
 					type: INIT,
 				})
 			);
-		client.onmessage = (message) => parseMessage(JSON.parse(message.data));
+		client.onmessage = (message) => {
+			parseMessage(JSON.parse(message.data));
+			console.log(Date.now());
+		};
 	}, []);
 
 	const payload = (obj) => {
@@ -40,7 +43,6 @@ export default function Routes() {
 	};
 
 	const parseMessage = (obj) => {
-		console.log(Date.now());
 		switch (obj.type) {
 			case INIT:
 				// Handle initial case
@@ -60,8 +62,8 @@ export default function Routes() {
 				setMsgList(obj.payload.messageList);
 				break;
 			case SEND_MESSAGE:
-				console.log(Date.now());
 				setMsgList(obj.payload.messageList);
+				console.log(Date.now());
 				break;
 			case USERNAME:
 				break;
